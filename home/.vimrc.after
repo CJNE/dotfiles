@@ -1,0 +1,251 @@
+set t_Co=256
+colorscheme solarized
+let mapleader=","
+au BufRead,BufNewFile *.tpl   set filetype=html
+" if has('gui_running')
+"     set fullscreen
+"     set transparency=15
+"     set guioptions=aAcei
+" endif
+" let NERDTreeChDirMode=2
+"set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
+"set virtualedit=onemore         " allow for cursor beyond last character
+" let g:solarized_termtrans=1
+" let g:solarized_termcolors=256
+" Wrapped lines goes down/up to next row, rather than next line in file.
+" nnoremap j gj
+" nnoremap k gk
+" alias yw to yank the entire word 'yank inner word'
+" even if the cursor is halfway inside the word
+" FIXME: will not properly repeat when you use a dot (tie into repeat.vim)
+" using nnoremap ,yw yiww
+
+" ,ow = 'overwrite word', replace a word with what's in the yank buffer
+" FIXME: will not properly repeat when you use a dot (tie into repeat.vim)
+" ususing nnoremap ,ow "_diwhp
+
+"make Y consistent with C and D
+" ususing nnoremap Y y$
+
+" ========================================
+" RSI Prevention - keyboard remaps
+" ========================================
+" Certain things we do every day as programmers stress
+" out our hands. For example, typing underscores and
+" dashes are very common, and in position that require
+" a lot of hand movement. Vim to the rescue
+"
+" Now using the middle finger of either hand you can type
+" underscores with apple-k or apple-d, and add Shift
+" to type dashes
+imap <silent> ,d _
+imap <silent> ,D -
+
+" ,# Surround a word with #{ruby interpolation}
+" ususing map ,# ysiw#
+" ususing vmap ,# c#{<C-R>"}<ESC>
+
+" ," Surround a word with "quotes"
+"using map ," ysiw"
+"using vmap ," c"<C-R>""<ESC>
+
+" ,' Surround a word with 'single quotes'
+"using map ,' ysiw'
+"using vmap ,' c'<C-R>"'<ESC>
+
+" ,) or ,( Surround a word with (parens)
+" The difference is in whether a space is put in
+"using map ,( ysiw(
+"using map ,) ysiw)
+"using vmap ,( c( <C-R>" )<ESC>
+"using vmap ,) c(<C-R>")<ESC>
+
+" ,[ Surround a word with [brackets]
+"using map ,] ysiw]
+"using map ,[ ysiw[
+"using vmap ,[ c[ <C-R>" ]<ESC>
+"using vmap ,] c[<C-R>"]<ESC>
+
+" ,{ Surround a word with {braces}
+"using map ,} ysiw}
+"using map ,{ ysiw{
+"using vmap ,} c{ <C-R>" }<ESC>
+"using vmap ,{ c{<C-R>"}<ESC>
+
+" gary beclrhardt's hashrocket
+"using imap <c-l> <space>=><space>
+" Change inside various enclosures with Cmd-" and Cmd-'
+" The f "makes" it find the enclosure so you don't have
+" to be (staddssddsding) 'inside' it
+nnoremap z9 f(ci(
+nnoremap z0 f)ci)
+nnoremap z[ f[ci[
+nnoremap z] f]ci]
+
+"Go to last edit location with ,.
+"using nnoremap ,. '.
+
+"When typing a string, your quotes auto complete. Move past the quote
+"while still in insert mode by hitting Ctrl-a. Example:
+"
+" type 'foo<c-a>
+"
+" the first quote will autoclose so you'll get 'foo' and hitting <c-a> will
+" put the cursor right after the quote
+"using imap <C-a> <esc>wa
+
+" ==== NERD tree
+" Cmd-Shift-N for nerd tree
+nmap <C-W> :NERDTreeToggle<CR>
+
+" ,q to toggle quickfix window (where you have stuff like GitGrep)
+" ,oq to open it back up (rare)
+"using nmap <silent> ,qc :CloseSingleConque<CR>:cclose<CR>
+"using nmap <silent> ,qo :copen<CR>
+
+" move up/down quickly by using Cmd-j, Cmd-k
+" which will move us around by functions
+"using nnoremap <silent> <D-j> }
+"using nnoremap <silent> <D-k> {
+"using autocmd FileType ruby map <buffer> <D-j> ]m
+"using autocmd FileType ruby map <buffer> <D-k> [m
+"using autocmd FileType rspec map <buffer> <D-j> }
+"using autocmd FileType rspec map <buffer> <D-k> {
+
+" Open the project tree and expose current file in the nerdtree with Ctrl-\
+"using nnoremap <silent> <C-\> :NERDTreeFind<CR>
+
+" Command-/ to toggle comments
+map z/ :TComment<CR>
+" using imap <D-/> <Esc>:TComment<CR>i
+
+"GitGrep - open up a git grep line, with a quote started for the search
+" using nnoremap ,gg :GitGrep ""<left>
+"GitGrep Current Partial
+" using nnoremap ,gcp :GitGrepCurrentPartial<CR>
+"GitGrep Current File
+" using nnoremap ,gcf :call GitGrep(expand("%:t:r"))<CR>
+
+" hit ,f to find the definition of the current class
+" this uses ctags. the standard way to get this is Ctrl-]
+" using nnoremap <silent> ,f <C-]>
+
+" use ,F to jump to tag in a vertical split
+" using nnoremap <silent> ,F :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("tag ". word)<cr>
+
+" use ,gf to go to file in a vertical split
+" using nnoremap <silent> ,gf :vertical botright wincmd f<CR>
+
+
+"Move back and forth through previous and next buffers
+"with ,z and ,x
+" using nnoremap <silent> ,z :bp<CR>
+" using nnoremap <silent> ,x :bn<CR>
+
+" ==============================
+" Window/Tab/Split Manipulation
+" ==============================
+" Move between split windows by using the four directions H, L, I, N
+" (note that  I use I and N instead of J and K because  J already does
+" line joins and K is mapped to GitGrep the current word
+" using nnoremap <silent> <C-h> <C-w>h
+" using nnoremap <silent> <C-l> <C-w>l
+" using nnoremap <silent> <C-k> <C-w>k
+" using nnoremap <silent> <C-j> <C-w>j
+
+" Zoom in and out of current window with ,gz
+" using map <silent> ,gz <C-w>o
+
+" Use numbers to pick the tab you want (like iTerm)
+" using map <silent> <D-1> :tabn 1<cr>
+" using map <silent> <D-2> :tabn 2<cr>
+" using map <silent> <D-3> :tabn 3<cr>
+" using map <silent> <D-4> :tabn 4<cr>
+" using map <silent> <D-5> :tabn 5<cr>
+" using map <silent> <D-6> :tabn 6<cr>
+" using map <silent> <D-7> :tabn 7<cr>
+" using map <silent> <D-8> :tabn 8<cr>
+" using map <silent> <D-9> :tabn 9<cr>
+
+" Create window splits easier. The default
+" way is Ctrl-w,v and Ctrl-w,s. I remap
+" this to vv and ss
+" using nnoremap <silent> vv <C-w>v
+" using nnoremap <silent> ss <C-w>s
+
+" Resize windows with arrow keys
+" using nnoremap <D-Up> <C-w>+
+" using nnoremap <D-Down> <C-w>-
+" using nnoremap <D-Left> <C-w><
+" using nnoremap <D-Right>  <C-w>>
+
+" create <%= foo %> erb tags using Ctrl-k in edit mode
+" using imap <silent> <C-K> <%=   %><Esc>3hi
+
+" create <%= foo %> erb tags using Ctrl-j in edit mode
+" using imap <silent> <C-J> <%  %><Esc>2hi
+
+" ============================
+" Shortcuts for everyday tasks
+" ============================
+
+" copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
+" this is helpful to paste someone the path you're looking at
+" using nnoremap <silent> ,cf :let @* = expand("%:~")<CR>
+" using nnoremap <silent> ,cn :let @* = expand("%:t")<CR>
+
+"Clear current search highlight by double tapping //
+" using nmap <silent> // :nohlsearch<CR>
+
+"(v)im (c)ommand - execute current line as a vim command
+" using nmap <silent> ,vc yy:<C-f>p<C-c><CR>
+
+"(v)im (r)eload
+" using nmap <silent> ,vr :so %<CR>
+
+" Type ,hl to toggle highlighting on/off, and show current value.
+" using noremap ,hl :set hlsearch! hlsearch?<CR>
+
+" Apple-* Highlight all occurrences of current word (like '*' but without moving)
+" http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches
+" using nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
+" These are very similar keys. Typing 'a will jump to the line in the current
+" file marked with ma. However, `a will jump to the line and column marked
+" with ma.  It’s more useful in any case I can imagine, but it’s located way
+" off in the corner of the keyboard. The best way to handle this is just to
+" swap them: http://items.sjbach.com/319/configuring-vim-right
+" using nnoremap ' `
+" using nnoremap ` '
+
+" ============================
+" Tabularize - alignment
+" ============================
+" Hit Cmd-Shift-A then type a character you want to align by
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
+
+" ============================
+" SplitJoin plugin
+" ============================
+"using nmap sj :SplitjoinSplit<cr>
+"using nmap sk :SplitjoinJoin<cr>
+
+" ============================
+" vim-ruby-conque
+" ============================
+" Cmd-Shift-R for RSpec
+"using nmap <silent> <D-R> :call RunRspecCurrentFileConque()<CR>
+" Cmd-Shift-L for RSpec Current Line
+"using nmap <silent> <D-L> :call RunRspecCurrentLineConque()<CR>
+" ,Cmd-R for Last conque command
+"using nmap <silent> ,<D-R> :call RunLastConqueCommand()<CR>
+
+" Get the current highlight group. Useful for then remapping the color
+"using map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
+
+" Source current file Cmd-% (good for vim development)
+"using map <D-%> :so %<CR>
