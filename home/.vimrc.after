@@ -181,7 +181,8 @@ map z/ :TComment<CR>
 
 " create <%= foo %> erb tags using Ctrl-k in edit mode
 " using imap <silent> <C-K> <%=   %><Esc>3hi
-
+autocmd FileType php imap <silent> <C-K> <?=   ?><Esc>3hi
+autocmd FileType smarty imap <silent> <C-K> {$}><Esc>3hi
 " create <%= foo %> erb tags using Ctrl-j in edit mode
 " using imap <silent> <C-J> <%  %><Esc>2hi
 
@@ -249,3 +250,6 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 
 " Source current file Cmd-% (good for vim development)
 "using map <D-%> :so %<CR>
+"set secure
+set exrc
+set shell=bash
