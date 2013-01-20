@@ -1,7 +1,26 @@
 set t_Co=256
 colorscheme solarized
 let mapleader=","
-au BufRead,BufNewFile *.tpl   set filetype=html
+au BufRead,BufNewFile *.tpl   set filetype=smarty
+let g:ctrlp_by_filename = 0
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
+nnoremap <leader><leader> <c-^>
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>n :call RenameFile()<cr>
+" use emacs-style tab completion when selecting files, etc
+set wildmode=longest,list
+" make tab completion for files/buffers act like bash
+set wildmenu
 " if has('gui_running')
 "     set fullscreen
 "     set transparency=15
@@ -96,7 +115,7 @@ nnoremap z] f]ci]
 
 " ==== NERD tree
 " Cmd-Shift-N for nerd tree
-nmap <C-W> :NERDTreeToggle<CR>
+nmap ,e :NERDTreeToggle<CR>
 
 " ,q to toggle quickfix window (where you have stuff like GitGrep)
 " ,oq to open it back up (rare)
@@ -179,10 +198,12 @@ map z/ :TComment<CR>
 " using nnoremap <D-Left> <C-w><
 " using nnoremap <D-Right>  <C-w>>
 
+
 " create <%= foo %> erb tags using Ctrl-k in edit mode
 " using imap <silent> <C-K> <%=   %><Esc>3hi
+
 autocmd FileType php imap <silent> <C-K> <?=   ?><Esc>3hi
-autocmd FileType smarty imap <silent> <C-K> {$}><Esc>3hi
+autocmd FileType smarty imap <silent> <C-K> {$}<Esc>i
 " create <%= foo %> erb tags using Ctrl-j in edit mode
 " using imap <silent> <C-J> <%  %><Esc>2hi
 
