@@ -68,8 +68,8 @@ accounts = generatorhallen
 #
 # You can override this with a command-line option -u.
 
-ui = basic
-#ui = TTYUI
+#ui = basic
+ui = TTYUI
 
 # If you try to synchronize messages to a folder which the IMAP server
 # considers read-only, OfflineIMAP will generate a warning.  If you want
@@ -171,7 +171,7 @@ remoterepository = RemoteGeneratorhallen
 # frequently to do that (in minutes) here.  You can also specify
 # fractional minutes (ie, 3.25).
 
-#autorefresh = 3
+autorefresh = 5
 
 # OfflineImap can replace a number of full updates by quick
 # synchronizations.  It only synchronizes a folder if 1) a Maildir
@@ -185,7 +185,7 @@ remoterepository = RemoteGeneratorhallen
 # another full synchronization (requires autorefresh).  Updates are
 # always performed after <autorefresh> minutes, be they quick or full.
 
-# quick = 10
+quick = 10
 
 # You can specify a pre and post sync hook to execute a external command.
 # In this case a call to imapfilter to filter mail before the sync process
@@ -563,10 +563,14 @@ trashfolder = [Gmail]/Papperskorg
 #
 # The same is valid for the spam folder
 #
-spamfolder = [Gmail]/Skräppost
+spamfolder = [Gmail]/Skr&AOQ-ppost
+idlefolders = ['INBOX', '[Gmail]/Alla mail']
 
+maxconnections = 3
+holdconnectionopen = yes
+keepalive = 60
 remotepasseval = get_keychain_pass(account="johan@generatorhallen.se", server="imap.gmail.com")
-realdelete = no
+realdelete = yes
 nametrans = lambda folder: {'[Gmail]/Utkast':    'drafts',
                             '[Gmail]/Skickade mail': 'sent',
                             '[Gmail]/Stj&AOQ-rnm&AOQ-rkta':   'flagged',

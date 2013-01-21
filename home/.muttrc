@@ -26,6 +26,19 @@ set sidebar_delim   = '  │'
 set sidebar_visible = yes
 set sidebar_width   = 33
 #color sidebar_new yellow default
+#Navigation
+
+macro index,pager,attach gi "<change-folder>+generatorhallen.se/INBOX<enter>" "Go to INBOX"
+macro index,pager,attach ga "<change-folder>+generatorhallen.se/archive<enter>" "Go to archive"
+macro index,pager,attach gj "<change-folder>+generatorhallen.se/spam<enter>" "Go to spam"
+macro index,pager,attach gs "<change-folder>+generatorhallen.se/sent<enter>" "Go to sent"
+macro index,pager,attach go "<change-folder>+generatorhallen.se/Oddjob<enter>" "Go to Oddjob"
+macro index,pager,attach gp "<change-folder>+generatorhallen.se/Parlay<enter>" "Go to Parlay"
+
+macro index,pager a "<save-message>+generatorhallen.se/archive<enter><enter><sync-mailbox>" "Archive message"
+#macro index,pager d "<save-message>+generatorhallen.se/trash<enter><enter><sync-mailbox>" "Delete message"
+macro index,pager * "<save-message>+generatorhallen.se/starred<enter><enter><sync-mailbox>" "Star message"
+macro index,pager,attach gra "!sh ~/.mutt/mailrun.sh<enter><enter>" "Sync mail"
 # Status Bar -----------------------------------------
 set status_chars  = " *%A"
 set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
