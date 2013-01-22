@@ -564,7 +564,7 @@ trashfolder = [Gmail]/Papperskorg
 # The same is valid for the spam folder
 #
 spamfolder = [Gmail]/Skr&AOQ-ppost
-idlefolders = ['INBOX', '[Gmail]/Alla mail']
+idlefolders = ['INBOX', 'Parlay','[Gmail]/Alla mail']
 
 maxconnections = 3
 holdconnectionopen = yes
