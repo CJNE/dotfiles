@@ -578,7 +578,8 @@ nametrans = lambda folder: {'[Gmail]/Utkast':    'drafts',
                             '[Gmail]/Papperskorgen':     'trash',
                             '[Gmail]/Alla mail':  'archive',
                             }.get(folder, folder)
-folderfilter = lambda folder: folder not in ['[Gmail]/Papperskorgen',
+folderfilter = lambda folder: folder not in [
+#'[Gmail]/Papperskorgen',
                                              '[Gmail]/Viktigt',
 #                                             '[Gmail]/Skr&AOQ-ppost',
                                              ]
