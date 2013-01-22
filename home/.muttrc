@@ -38,7 +38,7 @@ macro index,pager,attach gp "<change-folder>+generatorhallen.se/Parlay<enter>" "
 
 macro index,pager a "<save-message>+generatorhallen.se/archive<enter><enter><sync-mailbox>" "Archive message"
 macro index,pager d "<save-message>+generatorhallen.se/trash<enter><enter><sync-mailbox>" "Delete message"
-macro index,pager * "<save-message>+generatorhallen.se/starred<enter><enter><sync-mailbox>" "Star message"
+macro index,pager * "<save-message>+generatorhallen.se/flagged<enter><enter><sync-mailbox>" "Star message"
 
 macro index,pager,attach gra "!sh ~/.mutt/mailrun.sh<enter><enter>" "Sync mail"
 # Status Bar -----------------------------------------
